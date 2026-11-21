@@ -1,19 +1,13 @@
 package org.mql.spring.biblio.controllers;
 
-import java.util.List;
-
 import org.mql.spring.biblio.models.Author;
 import org.mql.spring.biblio.services.BiblioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /*
@@ -38,11 +32,6 @@ public class AuthorRestController {
 	public AuthorRestController() {
 	}
 	
-	// End-Points
-	@GetMapping
-	public List<Author> authorsList(){
-		return service.getAllAuthors();
-	} 
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Author> getAuthor(@PathVariable int id) {
@@ -55,20 +44,5 @@ public class AuthorRestController {
 		}
 	}
 	
-	@GetMapping(params = {"name"})
-	public List<Author> searchAuthorByName(@RequestParam String name) {
-		return service.getAuthorByName(name);
-	}
-	
-	@PostMapping
-	public ResponseEntity<Author> addAuthor(@RequestBody Author author) {
-	    boolean result = service.addAuthor(author);
-
-	    if(result) {
-	        return ResponseEntity.status(HttpStatus.CREATED).body(author);
-	    }
-
-	    return ResponseEntity.status(HttpStatus.CONFLICT).build();
-	}
 	
 }

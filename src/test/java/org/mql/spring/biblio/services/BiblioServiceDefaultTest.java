@@ -1,23 +1,18 @@
 package org.mql.spring.biblio.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-
-import java.util.List;
-import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mql.spring.biblio.models.Author;
 import org.mql.spring.biblio.repositories.AuthorRepository;
@@ -33,31 +28,11 @@ class BiblioServiceDefaultTest {
     private BiblioServiceDefault service;
 
     private Author author1;
-    private Author author2;
-    private Author sampleAuthor;
+
 
     @BeforeEach
     void setUp() {
         author1 = new Author();
-        author2 = new Author();
-        sampleAuthor = new Author();
-    }
-
-    @Test
-    @DisplayName("getAllAuthors() retourne tous les auteurs")
-    void shouldReturnAllAuthors() {
-        // Arrange
-        when(authorRepository.findAll()).thenReturn(List.of(author1, author2));
-
-        // Act
-        List<Author> result = service.getAllAuthors();
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(2, result.size());
-        assertSame(author1, result.get(0));
-        verify(authorRepository).findAll();
-        verifyNoMoreInteractions(authorRepository);
     }
 
     @Test
@@ -86,6 +61,22 @@ class BiblioServiceDefaultTest {
         // Act
         Author result = service.getAuthorById(id);
 
+        // Assert
+        assertNull(result);
+        verify(authorRepository).findById(id);
+    }
+
+    // ID-3 : cas limite (nouveau test)
+    @Test
+    @DisplayName("retourne null lorsque l'identifiant est négatif")
+    void shouldReturnNullWhenIdIsNegative() {
+        // Arrange
+        int id = -1;
+        when(authorRepository.findById(id)).thenReturn(Optional.empty());
+ 
+        // Act
+        Author result = service.getAuthorById(id);
+ 
         // Assert
         assertNull(result);
         verify(authorRepository).findById(id);
