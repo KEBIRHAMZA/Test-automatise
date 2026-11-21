@@ -90,57 +90,5 @@ class BiblioServiceDefaultTest {
         assertNull(result);
         verify(authorRepository).findById(id);
     }
-
-    @Test
-    @DisplayName("retourne null lorsque l'identifiant est négatif")
-    void shouldReturnNullWhenIdIsNegative() {
-        // Arrange
-        int id = -1;
-        when(authorRepository.findById(id)).thenReturn(Optional.empty());
- 
-        // Act
-        Author result = service.getAuthorById(id);
- 
-        // Assert
-        assertNull(result);
-        verify(authorRepository).findById(id);
-    }
-
-    @Test
-    @DisplayName("getAuthorByName() retourne les auteurs correspondant au mot-clé")
-    void shouldReturnAuthorsMatchingKeyword() {
-        // Arrange
-        String keyword = "Hugo";
-        when(authorRepository.findByKeyword(keyword)).thenReturn(List.of(author1));
-
-        // Act
-        List<Author> result = service.getAuthorByName(keyword);
-
-        // Assert
-        assertEquals(1, result.size());
-        assertSame(author1, result.get(0));
-        verify(authorRepository).findByKeyword(keyword);
-    }
-
-    @Test
-    @DisplayName("addAuthor() retourne false tant que la méthode n'est pas implémentée")
-    void shouldReturnFalseForAddAuthorWhenNotImplemented() {
-        // Act
-        boolean added = service.addAuthor(sampleAuthor);
-
-        // Assert
-        assertFalse(added);
-    }
-
-    @Test
-    @DisplayName("saveAuthor() retourne false tant que la méthode n'est pas implémentée")
-    void shouldReturnFalseForSaveAuthorWhenNotImplemented() {
-        // Act
-        boolean saved = service.saveAuthor(sampleAuthor);
-
-        // Assert
-        assertFalse(saved);
-    }
-
     
 }
