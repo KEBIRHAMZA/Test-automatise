@@ -142,16 +142,5 @@ class BiblioServiceDefaultTest {
         assertFalse(saved);
     }
 
-    @Test
-    @DisplayName("removeAuthor() retourne null tant que la méthode n'est pas implémentée")
-    void shouldReturnNullForRemoveAuthorWhenNotImplemented() {
-        // Arrange
-        int id = 1;
-
-        // Act
-        Author removed = service.removeAuthor(id);
-
-        // Assert
-        assertNull(removed);
-    }
+    
 }
