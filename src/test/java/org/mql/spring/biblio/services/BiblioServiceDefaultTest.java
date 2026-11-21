@@ -47,7 +47,7 @@ class BiblioServiceDefaultTest {
 
         // Assert
         assertNotNull(result);
-        assertSame(author, result);
+        assertSame(null, result);
         verify(authorRepository).findById(id);
     }
 
