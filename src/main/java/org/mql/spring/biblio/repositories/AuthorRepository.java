@@ -12,7 +12,7 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
     // ==========================
     // Recherche simple
     // ==========================
-    List<Author> findByName(String name);
+    Optional<Author> findByName(String name);
 
     List<Author> findByYearBorn(int yearBorn);
 

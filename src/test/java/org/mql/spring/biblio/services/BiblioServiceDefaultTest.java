@@ -27,12 +27,12 @@ class BiblioServiceDefaultTest {
     @InjectMocks
     private BiblioServiceDefault service;
 
-    private Author author1;
+    private Author author;
 
 
     @BeforeEach
     void setUp() {
-        author1 = new Author();
+        author = new Author();
     }
 
     @Test
@@ -40,14 +40,14 @@ class BiblioServiceDefaultTest {
     void shouldReturnAuthorWhenFoundById() {
         // Arrange
         int id = 1;
-        when(authorRepository.findById(id)).thenReturn(Optional.of(author1));
+        when(authorRepository.findById(id)).thenReturn(Optional.of(author));
 
         // Act
         Author result = service.getAuthorById(id);
 
         // Assert
         assertNotNull(result);
-        assertSame(author1, result);
+        assertSame(author, result);
         verify(authorRepository).findById(id);
     }
 

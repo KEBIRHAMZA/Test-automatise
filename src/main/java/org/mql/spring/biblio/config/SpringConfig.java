@@ -6,9 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SpringConfig {
-	public SpringConfig() {
-	}
-	
+
 	@Bean
 	public Author a1() {
 		return new Author(201,"Brendan Eich", 1961);

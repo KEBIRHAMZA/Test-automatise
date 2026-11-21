@@ -4,17 +4,16 @@ import java.util.Optional;
 
 import org.mql.spring.biblio.models.Author;
 import org.mql.spring.biblio.repositories.AuthorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BiblioServiceDefault implements BiblioService{
 	
-	@Autowired
 	private AuthorRepository authorRepository;
 	
 	
-	public BiblioServiceDefault() {
+	public BiblioServiceDefault(AuthorRepository authorRepository) {
+		this.authorRepository = authorRepository;
 		
 	}
 
@@ -24,5 +23,6 @@ public class BiblioServiceDefault implements BiblioService{
 		if(author.isPresent()) return author.get();
 		return null;
 	}
+
 
 }

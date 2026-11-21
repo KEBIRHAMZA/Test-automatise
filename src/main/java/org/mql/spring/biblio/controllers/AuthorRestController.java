@@ -2,9 +2,7 @@ package org.mql.spring.biblio.controllers;
 
 import org.mql.spring.biblio.models.Author;
 import org.mql.spring.biblio.services.BiblioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/authors")
-@CrossOrigin("*")
 public class AuthorRestController {
-	@Autowired
 	private BiblioService service;
 	
-	public AuthorRestController() {
+	public AuthorRestController(BiblioService service) {
+		this.service = service;
 	}
 	
 	
