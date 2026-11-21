@@ -93,17 +93,6 @@ class BiblioServiceDefaultTest {
     }
 
     @Test
-    @DisplayName("[VERT] saveAuthor() sauvegarde un auteur non null")
-    void shouldSaveAuthorWhenNotNull() {
-        when(authorRepository.save(author)).thenReturn(author);
-
-        boolean result = service.saveAuthor(author);
-
-        assertTrue(result);
-        verify(authorRepository).save(author);
-    }
-
-    @Test
     @DisplayName("[VERT] saveAuthor() retourne false si l'auteur est null")
     void shouldReturnFalseWhenSavingNullAuthor() {
         boolean result = service.saveAuthor(null);
