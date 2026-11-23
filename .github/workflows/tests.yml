@@ -13,13 +13,12 @@ jobs:
     name: Run Unit and Integration Tests
     runs-on: ubuntu-latest
 
-    # 1. Démarrer MySQL pour les tests
     services:
       mysql:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: biblio_test
+          MYSQL_DATABASE: Biblio
         ports:
           - 3306:3306
         options: >-
@@ -29,22 +28,19 @@ jobs:
           --health-retries=10
 
     steps:
-      # 2. Récupérer le code source
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 3. Installer Java 17
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: temurin
           cache: maven
 
-      # 4. Configurer la connexion à MySQL
       - name: Run Unit and Integration Tests
         env:
-          SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/biblio_test
+          SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/Biblio
           SPRING_DATASOURCE_USERNAME: root
           SPRING_DATASOURCE_PASSWORD: root
         run: mvn -B clean verify
