@@ -1,8 +1,22 @@
 stages:
   - test
- 
-test:
+
+run-tests:
   stage: test
   image: maven:3.9-eclipse-temurin-17
+
+  services:
+    - mysql:8.0
+
+  variables:
+    # Variables lues par le conteneur MySQL
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: biblio_test
+    # Variables lues par Spring Boot (notez "mysql" au lieu de "127.0.0.1")
+    SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/biblio_test
+    SPRING_DATASOURCE_USERNAME: root
+    SPRING_DATASOURCE_PASSWORD: root
+    SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
   script:
     - mvn test
