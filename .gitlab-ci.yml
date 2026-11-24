@@ -19,4 +19,4 @@ run-tests:
     SPRING_JPA_HIBERNATE_DDL_AUTO: update
 
   script:
-    - mvn test
+    - mvn clean test
