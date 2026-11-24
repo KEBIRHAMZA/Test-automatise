@@ -2,7 +2,6 @@ package org.mql.spring.biblio.integration;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mql.spring.biblio.models.Author;
@@ -24,7 +23,6 @@ class BiblioServiceIntegrationTest {
     void shouldSaveAuthorSuccessfully() {
         // Arrange
         Author author = new Author();
-        author.setId(1000);
         author.setName("Bjarne Stroustrup");
         author.setYearBorn(1950);
         
