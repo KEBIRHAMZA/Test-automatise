@@ -42,7 +42,7 @@ class BiblioServiceDefaultTest {
         author.setId(1);
     }
 
-    // --- VERT : méthodes et branches entièrement couvertes ---
+    // --- VERT : méthodes et branches entièrement couvertes00 ---
 
     @Test
     @DisplayName("[VERT] getAllAuthors() retourne la liste complète")
